@@ -1,6 +1,6 @@
 package com.elyadata.webResumeGenerator.model;
 
-public enum role {
+public enum Role {
 
     ADMIN,
     USER,

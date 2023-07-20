@@ -14,11 +14,10 @@ public class Parameters {
     private Long id;
     private String title;
     private String description;
-    private LocalDate start_date;
-    private LocalDate end_date;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @ManyToOne
-    @JoinColumn(name = "id")
     private Section section;
 
 

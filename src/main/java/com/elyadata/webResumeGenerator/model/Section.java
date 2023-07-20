@@ -22,10 +22,9 @@ public class Section {
 
 
     @ManyToOne
-    @JoinColumn(name = "id")
     private Resume resume;
 
-    @OneToOne(mappedBy = "Section", cascade = CascadeType.ALL)
+    @OneToOne
     private SectionType sectionType;
 
 }

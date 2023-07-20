@@ -7,9 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SectionTypeRepository extends JpaRepository<SectionType, Long> {
-    @Query(value = "INSERT INTO section_types (id, type) VALUES (:id, :type)", nativeQuery = true)
-    void insertSectionType(Long id, String type);
-
 
 }
 

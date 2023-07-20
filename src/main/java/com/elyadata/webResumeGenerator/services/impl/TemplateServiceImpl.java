@@ -1,30 +1,29 @@
 package com.elyadata.webResumeGenerator.services.impl;
 
+import com.elyadata.webResumeGenerator.services.TemplateService;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.ColumnDocumentRenderer;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.property.Property;
 import com.itextpdf.layout.property.TextAlignment;
-import com.itextpdf.layout.property.UnitValue;
-import com.itextpdf.layout.renderer.DocumentRenderer;
-import com.itextpdf.layout.renderer.TableRenderer;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class template {
+@Service
+public class TemplateServiceImpl implements TemplateService {
     public static final String IMG="static\\bluee.png";
-    public static void main(String[] args) throws IOException {
+    @Override
+    public void generateResume() throws IOException {
 
         String path = ".\\first.pdf";
         PdfWriter pdfWriter = new PdfWriter(path);
@@ -51,8 +50,6 @@ public class template {
         bleue.setHeight(30);
 
         bleue.setOpacity(0.3f);
-
-
 
 
 
@@ -94,17 +91,6 @@ public class template {
             canvas.stroke();
 
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -159,29 +145,8 @@ public class template {
             document.add(new AreaBreak());
         }
 
-
-
-
-
         int i =pdfDocument.getNumberOfPages();
-
-
-
-
-
-
-
         pdfDocument.removePage(i);
-        // Récupérer le nombre total de pages
-
-
         document.close();
-
-        System.out.println(i);
-
     }
-
-
-
-
 }

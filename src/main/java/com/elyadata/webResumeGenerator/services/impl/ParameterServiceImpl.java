@@ -6,10 +6,4 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ParameterServiceImpl implements ParametersService {
-
-
-    @Override
-    public Parameters getId() {
-        return null;
-    }
 }

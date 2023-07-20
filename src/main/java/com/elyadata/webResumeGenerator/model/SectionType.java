@@ -14,9 +14,6 @@ public class SectionType {
     private Long id;
     private String type;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Section section;
 
 
 

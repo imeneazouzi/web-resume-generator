@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/section")
+@RequestMapping("section")
 public class SectionController {
 
 

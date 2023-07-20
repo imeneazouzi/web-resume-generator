@@ -19,7 +19,9 @@ spring:
     hikari:
       maximum-pool-size: 10
 
-
+server:
+  address: 0.0.0.0
+  port: 8080
 
 
 

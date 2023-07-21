@@ -1,12 +1,8 @@
 package com.elyadata.webResumeGenerator.controller;
-
-
-import com.elyadata.webResumeGenerator.model.SectionType;
+import com.elyadata.webResumeGenerator.dto.SectionTypeDTO;
 import com.elyadata.webResumeGenerator.services.SectionTypeService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,22 +13,31 @@ public class SectionTypeController {
         this.sectionTypeService = sectionTypeService;
     }
     @GetMapping("")
-    public ResponseEntity<List<SectionType>> getAllSectionType(){
+    public ResponseEntity<List<SectionTypeDTO>> getAllSectionType(){
         return ResponseEntity.ok(sectionTypeService.findAllSectionType());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<SectionType> getSectionTypeById(@PathVariable Long id){
+    public ResponseEntity<SectionTypeDTO> getSectionTypeById(@PathVariable Long id){
         return ResponseEntity.ok(sectionTypeService.findSectionTypeById(id));
     }
+
+    @GetMapping("/section/{id}")
+    public ResponseEntity<List<SectionTypeDTO>>  getSectionTypeBysectionId(@PathVariable Long sectionId){
+        return ResponseEntity.ok(sectionTypeService.findSectionTypesBySectionId(sectionId));
+    }
+
+
+
+
     @PostMapping("/")
-    public ResponseEntity<SectionType> addSectionType(@RequestBody SectionType sectionType){
-        return  ResponseEntity.ok(sectionTypeService.addSectionType(sectionType));
+    public ResponseEntity<SectionTypeDTO> addSectionType(@RequestBody SectionTypeDTO sectionTypeDto){
+        return  ResponseEntity.ok(sectionTypeService.addSectionType(sectionTypeDto));
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<SectionType> updateSectionType(@RequestBody SectionType sectionType){
-        return  ResponseEntity.ok(sectionTypeService.updateSectionType(sectionType));
+    public ResponseEntity<SectionTypeDTO> updateSectionType(@RequestBody SectionTypeDTO sectionTypeDto){
+        return  ResponseEntity.ok(sectionTypeService.updateSectionType(sectionTypeDto));
     }
 
     @DeleteMapping("/{id}")

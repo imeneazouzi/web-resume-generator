@@ -1,50 +1,55 @@
 package com.elyadata.webResumeGenerator.services.impl;
-
+import com.elyadata.webResumeGenerator.dto.SectionTypeDTO;
 import com.elyadata.webResumeGenerator.execption.NotFoundException;
-import com.elyadata.webResumeGenerator.model.SectionType;
+import com.elyadata.webResumeGenerator.mapper.SectionTypeMapper;
 import com.elyadata.webResumeGenerator.repo.SectionTypeRepository;
 import com.elyadata.webResumeGenerator.services.SectionTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class SectionTypeServiceImpl implements SectionTypeService {
-
-    @Autowired
     private SectionTypeRepository sectionTypeRepository;
-    @Autowired
-    public SectionTypeServiceImpl(SectionTypeRepository sectionTypeRepository)
+    private final SectionTypeMapper sectionTypeMapper;
+    public SectionTypeServiceImpl(SectionTypeRepository sectionTypeRepository , SectionTypeMapper sectionTypeMapper)
     {
         this.sectionTypeRepository = sectionTypeRepository;
+        this.sectionTypeMapper = sectionTypeMapper;
     }
+
     @Override
-    public SectionType addSectionType(SectionType sectionType) {
-        return sectionTypeRepository.save(sectionType);
+    public SectionTypeDTO addSectionType(SectionTypeDTO sectionTypeDto) {
+        return sectionTypeMapper.toDto(sectionTypeRepository.save(sectionTypeDto));
     }
     @Override
     public void deleteSectionType(Long id){
         sectionTypeRepository.deleteById(id);
     }
     @Override
-    public SectionType updateSectionType(SectionType sectionType){
-        SectionType existingSectionType = sectionTypeRepository.findById(sectionType.getId())
-                .orElseThrow(() -> new IllegalArgumentException("SectionType not found with ID: " + sectionType.getId()));
-        existingSectionType.setType(sectionType.getType());
-        return sectionTypeRepository.save(existingSectionType);
+    public SectionTypeDTO updateSectionType(SectionTypeDTO sectionTypeDto){
+        SectionTypeDTO existingSectionTypeDto = sectionTypeRepository.findById(sectionTypeDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("SectionType not found with ID: " + sectionTypeDto.getId()));
+        existingSectionTypeDto.setType(sectionTypeDto.getType());
+        return sectionTypeMapper.toDto(sectionTypeRepository.save(existingSectionTypeDto));
     }
 
     @Override
-    public SectionType findSectionTypeById(Long id) {
-        return sectionTypeRepository.findSectionTypeById(id)
-                .orElseThrow(() -> new NotFoundException("SectionType by id " + id + " was not found"));
+    public SectionTypeDTO findSectionTypeById(Long id) {
+        return sectionTypeMapper.toDto(sectionTypeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("SectionType with id " + id + " was not found")));
+    }
+
+
+    @Override
+    public List<SectionTypeDTO> findAllSectionType() {
+        return sectionTypeMapper.toDto(sectionTypeRepository.findAll());
     }
 
     @Override
-    public List<SectionType> findAllSectionType() {
-        return sectionTypeRepository.findAll();
+    public List<SectionTypeDTO> findSectionTypesBySectionId(long sectionId) {
+        return sectionTypeMapper.toDto(sectionTypeRepository.findSectionTypesBySectionId(sectionId));
     }
+
 
 
 }

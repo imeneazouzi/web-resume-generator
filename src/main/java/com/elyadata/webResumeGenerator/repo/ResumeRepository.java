@@ -1,6 +1,4 @@
 package com.elyadata.webResumeGenerator.repo;
-
-import com.elyadata.webResumeGenerator.dto.ResumeDTO;
 import com.elyadata.webResumeGenerator.model.Resume;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

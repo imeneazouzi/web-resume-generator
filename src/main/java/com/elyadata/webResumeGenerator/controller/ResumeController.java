@@ -1,6 +1,5 @@
 package com.elyadata.webResumeGenerator.controller;
 import com.elyadata.webResumeGenerator.dto.ResumeDTO;
-import com.elyadata.webResumeGenerator.model.Resume;
 import com.elyadata.webResumeGenerator.services.ResumeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

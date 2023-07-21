@@ -2,6 +2,7 @@ package com.elyadata.webResumeGenerator.services.impl;
 import com.elyadata.webResumeGenerator.dto.SectionTypeDTO;
 import com.elyadata.webResumeGenerator.execption.NotFoundException;
 import com.elyadata.webResumeGenerator.mapper.SectionTypeMapper;
+import com.elyadata.webResumeGenerator.model.SectionType;
 import com.elyadata.webResumeGenerator.repo.SectionTypeRepository;
 import com.elyadata.webResumeGenerator.services.SectionTypeService;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 public class SectionTypeServiceImpl implements SectionTypeService {
-    private SectionTypeRepository sectionTypeRepository;
+    private final SectionTypeRepository sectionTypeRepository;
     private final SectionTypeMapper sectionTypeMapper;
     public SectionTypeServiceImpl(SectionTypeRepository sectionTypeRepository , SectionTypeMapper sectionTypeMapper)
     {
@@ -19,7 +20,7 @@ public class SectionTypeServiceImpl implements SectionTypeService {
 
     @Override
     public SectionTypeDTO addSectionType(SectionTypeDTO sectionTypeDto) {
-        return sectionTypeMapper.toDto(sectionTypeRepository.save(sectionTypeDto));
+        return sectionTypeMapper.toDto(sectionTypeRepository.save(sectionTypeMapper.toEntity(sectionTypeDto)));
     }
     @Override
     public void deleteSectionType(Long id){
@@ -27,10 +28,10 @@ public class SectionTypeServiceImpl implements SectionTypeService {
     }
     @Override
     public SectionTypeDTO updateSectionType(SectionTypeDTO sectionTypeDto){
-        SectionTypeDTO existingSectionTypeDto = sectionTypeRepository.findById(sectionTypeDto.getId())
+        SectionType existingSectionType = sectionTypeRepository.findById(sectionTypeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("SectionType not found with ID: " + sectionTypeDto.getId()));
-        existingSectionTypeDto.setType(sectionTypeDto.getType());
-        return sectionTypeMapper.toDto(sectionTypeRepository.save(existingSectionTypeDto));
+        existingSectionType.setType(sectionTypeDto.getType());
+        return sectionTypeMapper.toDto(sectionTypeRepository.save(existingSectionType));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.elyadata.webResumeGenerator.mapper;
 
-import com.elyadata.webResumeGenerator.dto.UserDTO;
 import com.elyadata.webResumeGenerator.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

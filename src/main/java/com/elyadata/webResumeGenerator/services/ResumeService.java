@@ -1,15 +1,16 @@
 package com.elyadata.webResumeGenerator.services;
 
+import com.elyadata.webResumeGenerator.dto.ResumeDTO;
 import com.elyadata.webResumeGenerator.model.Resume;
 
 import java.util.List;
 
 public interface ResumeService {
 
-    public Resume addResume(Resume resume);
-    public List<Resume> findAllResume();
+    public ResumeDTO addResume(ResumeDTO resumeDto);
+    public List<ResumeDTO> findAllResume();
     public void deleteResume(Long id);
-    public Resume updateResume(Resume resume);
-    public Resume findResumeById(Long id);
-    public List<Resume> findByTitle(String title);
+    public ResumeDTO updateResume(ResumeDTO resumeDto);
+    public ResumeDTO findResumeById(Long id);
+    public List<ResumeDTO> findByTitle(String title);
 }

@@ -1,6 +1,7 @@
 package com.elyadata.webResumeGenerator.services.impl;
 import com.elyadata.webResumeGenerator.dto.ResumeDTO;
 import com.elyadata.webResumeGenerator.mapper.ResumeMapper;
+import com.elyadata.webResumeGenerator.model.Resume;
 import com.elyadata.webResumeGenerator.repo.ResumeRepository;
 import com.elyadata.webResumeGenerator.execption.NotFoundException;
 import com.elyadata.webResumeGenerator.services.ResumeService;
@@ -30,10 +31,10 @@ public class ResumeServiceImpl implements ResumeService {
     }
     @Override
     public ResumeDTO updateResume(ResumeDTO resumeDto){
-        ResumeDTO existingResumeDto = resumeRepository.findById(resumeDto.getId())
+        Resume existingResume = resumeRepository.findById(resumeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Resume not found with ID: " + resumeDto.getId()));
-        existingResumeDto.setTitle(resumeDto.getTitle());
-        return resumeMapper.toDto(resumeRepository.save(existingResumeDto));
+        existingResume.setTitle(resumeDto.getTitle());
+        return resumeMapper.toDto(resumeRepository.save(existingResume));
     }
     @Override
     public ResumeDTO findResumeById(Long id) {

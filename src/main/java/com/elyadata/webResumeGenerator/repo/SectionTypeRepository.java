@@ -8,7 +8,7 @@ import java.util.Optional;
 @Repository
 public interface SectionTypeRepository extends JpaRepository<SectionType, Long> {
     Optional<SectionType> findSectionTypeById(Long id);
-    public List<SectionType> findSectionTypesBySectionId(long sectionId);
+     List<SectionType> findSectionTypesBySectionId(long sectionId);
 }
 
 

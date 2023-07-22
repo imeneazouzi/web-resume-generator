@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface ResumeService {
 
-    public ResumeDTO addResume(ResumeDTO resumeDto);
-    public List<ResumeDTO> findAllResume();
-    public void deleteResume(Long id);
-    public ResumeDTO updateResume(ResumeDTO resumeDto);
-    public ResumeDTO findResumeById(Long id);
-    public List<ResumeDTO> findByTitle(String title);
+    ResumeDTO addResume(ResumeDTO resumeDto);
+    List<ResumeDTO> findAllResume();
+    void deleteResume(Long id);
+     ResumeDTO updateResume(ResumeDTO resumeDto);
+     ResumeDTO findResumeById(Long id);
+    List<ResumeDTO> findByTitle(String title);
 }

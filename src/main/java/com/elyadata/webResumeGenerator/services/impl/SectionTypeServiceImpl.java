@@ -7,7 +7,6 @@ import com.elyadata.webResumeGenerator.repo.SectionTypeRepository;
 import com.elyadata.webResumeGenerator.services.SectionTypeService;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
 @Service
 public class SectionTypeServiceImpl implements SectionTypeService {
     private final SectionTypeRepository sectionTypeRepository;
@@ -17,7 +16,6 @@ public class SectionTypeServiceImpl implements SectionTypeService {
         this.sectionTypeRepository = sectionTypeRepository;
         this.sectionTypeMapper = sectionTypeMapper;
     }
-
     @Override
     public SectionTypeDTO addSectionType(SectionTypeDTO sectionTypeDto) {
         return sectionTypeMapper.toDto(sectionTypeRepository.save(sectionTypeMapper.toEntity(sectionTypeDto)));
@@ -33,24 +31,13 @@ public class SectionTypeServiceImpl implements SectionTypeService {
         existingSectionType.setType(sectionTypeDto.getType());
         return sectionTypeMapper.toDto(sectionTypeRepository.save(existingSectionType));
     }
-
     @Override
     public SectionTypeDTO findSectionTypeById(Long id) {
         return sectionTypeMapper.toDto(sectionTypeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("SectionType with id " + id + " was not found")));
     }
-
-
     @Override
     public List<SectionTypeDTO> findAllSectionType() {
         return sectionTypeMapper.toDto(sectionTypeRepository.findAll());
     }
-
-    @Override
-    public List<SectionTypeDTO> findSectionTypesBySectionId(long sectionId) {
-        return sectionTypeMapper.toDto(sectionTypeRepository.findSectionTypesBySectionId(sectionId));
-    }
-
-
-
 }

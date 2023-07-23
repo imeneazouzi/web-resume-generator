@@ -20,25 +20,16 @@ public class SectionController {
     public ResponseEntity<SectionDTO> getSectionById(@PathVariable Long id){
         return ResponseEntity.ok(sectionService.findSectionById(id));
     }
-
-    @GetMapping("/resume/{id}")
-    public ResponseEntity<List<SectionDTO>>  getSectionByResumeId(@PathVariable Long resumeId){
-        return ResponseEntity.ok(sectionService.findSectionByResumeId(resumeId));
-    }
     @PostMapping("/")
     public ResponseEntity<SectionDTO> addSection(@RequestBody SectionDTO sectionDto){
         return  ResponseEntity.ok(sectionService.addSection(sectionDto));
     }
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<SectionDTO> updateSection(@RequestBody SectionDTO sectionDto){
         return  ResponseEntity.ok(sectionService.updateSection(sectionDto));
     }
-
     @DeleteMapping("/{id}")
     public void deleteSection(@PathVariable("id") Long id){
         sectionService.deleteSection(id);
     }
-
-
-
 }

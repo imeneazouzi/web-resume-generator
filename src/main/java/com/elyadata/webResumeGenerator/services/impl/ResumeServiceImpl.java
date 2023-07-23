@@ -45,9 +45,4 @@ public class ResumeServiceImpl implements ResumeService {
     public List<ResumeDTO> findByTitle(String title) {
             return resumeMapper.toDto(resumeRepository.findByTitle(title));
     }
-
-
-
-
-
 }

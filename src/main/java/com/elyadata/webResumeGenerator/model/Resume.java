@@ -15,10 +15,8 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private  String title;
-
-
-    @ManyToOne
-    private User user;
+    @OneToMany
+    private List<Section> sections;
 
 }
 

@@ -1,7 +1,7 @@
 package com.elyadata.webResumeGenerator.model;
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.List;
 
 
 @Entity
@@ -13,9 +13,8 @@ public class Section {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne
-    private Resume resume;
     @OneToOne
     private SectionType sectionType;
-
+    @OneToMany
+    private List<Parameters> parameters;
 }

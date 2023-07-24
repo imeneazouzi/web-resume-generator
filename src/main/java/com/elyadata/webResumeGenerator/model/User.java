@@ -1,8 +1,7 @@
 package com.elyadata.webResumeGenerator.model;
-
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
@@ -18,5 +17,7 @@ public class User {
     private  String job;
     @Enumerated(EnumType.STRING)
     private Role type;
+    @OneToMany
+    private List<Resume> resumes;
 
 }

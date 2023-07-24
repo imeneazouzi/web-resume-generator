@@ -1,6 +1,11 @@
 package com.elyadata.webResumeGenerator.model;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 
@@ -18,9 +23,6 @@ public class Parameters {
     private LocalDate endDate;
     private String place;
     private String summary;
-
-    @ManyToOne
-    private Section section;
 
 
 }

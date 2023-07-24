@@ -38,6 +38,8 @@ public class ParameterServiceImpl implements ParametersService {
         existingParameters.setDescription(parametersDto.getDescription());
         existingParameters.setStartDate(parametersDto.getStartDate());
         existingParameters.setEndDate(parametersDto.getEndDate());
+        existingParameters.setPlace(parametersDto.getPlace());
+        existingParameters.setSummary(parametersDto.getSummary());
         return parametersMapper.toDto(parametersRepository.save(existingParameters));
     }
     @Override

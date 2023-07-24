@@ -16,7 +16,7 @@ public class Resume {
     private Long id;
     private  String title;
     @OneToMany
-    private List<Section> section;
+    private List<Section> sections;
 
 }
 

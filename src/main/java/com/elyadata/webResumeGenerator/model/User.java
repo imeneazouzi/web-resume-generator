@@ -18,6 +18,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role type;
     @OneToMany
-    private List<Resume> resume;
+    private List<Resume> resumes;
 
 }

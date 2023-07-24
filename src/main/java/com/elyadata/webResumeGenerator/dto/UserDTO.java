@@ -16,5 +16,5 @@ public class UserDTO {
     private String lastName;
     private  String job;
     private Role type;
-    private List<Resume> resume;
+    private List<Resume> resumes;
 }

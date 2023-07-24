@@ -15,4 +15,6 @@ public class ParametersDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private Section section;
+    private String place;
+    private String summary;
 }

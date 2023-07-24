@@ -16,6 +16,8 @@ public class Parameters {
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
+    private String place;
+    private String summary;
 
     @ManyToOne
     private Section section;

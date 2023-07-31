@@ -24,6 +24,13 @@ public class ResumeController {
     public ResponseEntity<List<ResumeDTO>> findByTitle(@PathVariable("title") String title) {
         return ResponseEntity.ok(resumeService.findByTitle(title));
     }
+    @GetMapping("/resume-user/{id}")
+    public ResponseEntity<List<ResumeDTO>> findResumeByUser(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(resumeService.findResumeByUser(id));
+    }
+
+
+
     @PostMapping("/")
     public ResponseEntity<ResumeDTO> addResume(@RequestBody ResumeDTO resumeDto){
         return ResponseEntity.ok(resumeService.addResume(resumeDto));

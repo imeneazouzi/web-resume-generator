@@ -46,4 +46,8 @@ public class ResumeServiceImpl implements ResumeService {
     public List<ResumeDTO> findByTitle(String title) {
             return resumeMapper.toDto(resumeRepository.findByTitle(title));
     }
+    @Override
+    public List<ResumeDTO> findResumeByUser(Long id) {
+        return resumeMapper.toDto(resumeRepository.findResumeByUser(id));
+    }
 }

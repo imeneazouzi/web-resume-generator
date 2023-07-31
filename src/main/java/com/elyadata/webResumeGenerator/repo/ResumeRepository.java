@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ResumeRepository extends JpaRepository<Resume, Long> {
     Optional<Resume> findResumeById(Long id);
     List<Resume> findByTitle(String title);
+    List<Resume> findResumeByUser(Long id);
 }

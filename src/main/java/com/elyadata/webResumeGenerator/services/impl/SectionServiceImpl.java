@@ -29,6 +29,8 @@ public class SectionServiceImpl implements SectionService {
         Section existingSection = sectionRepository.findById(sectionDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Section not found with ID: " + sectionDto.getId()));
         existingSection.setName(sectionDto.getName());
+        existingSection.setParameters(sectionDto.getParameters());
+        existingSection.setSectionType(sectionDto.getSectionType());
         return sectionMapper.toDto(sectionRepository.save(existingSection));
     }
     @Override

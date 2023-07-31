@@ -34,6 +34,7 @@ public class ResumeServiceImpl implements ResumeService {
         Resume existingResume = resumeRepository.findById(resumeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Resume not found with ID: " + resumeDto.getId()));
         existingResume.setTitle(resumeDto.getTitle());
+        existingResume.setSections(resumeDto.getSections());
         return resumeMapper.toDto(resumeRepository.save(existingResume));
     }
     @Override

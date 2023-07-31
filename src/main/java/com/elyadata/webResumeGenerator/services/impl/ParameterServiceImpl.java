@@ -40,6 +40,12 @@ public class ParameterServiceImpl implements ParametersService {
     public ParametersDTO updateParameters(ParametersDTO parametersDto) {
         Parameters existingParameters = parametersRepository.findById(parametersDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Parameter not found with ID: " + parametersDto.getId()));
+                existingParameters.setTitle(parametersDto.getTitle());
+                existingParameters.setDescription(parametersDto.getDescription());
+                existingParameters.setStartDate(parametersDto.getStartDate());
+                existingParameters.setEndDate(parametersDto.getEndDate());
+                existingParameters.setPlace(parametersDto.getPlace());
+                existingParameters.setSummary(parametersDto.getSummary());
         return parametersMapper.toDto(parametersRepository.save(existingParameters));
     }
 
@@ -47,5 +53,6 @@ public class ParameterServiceImpl implements ParametersService {
     public ParametersDTO findParametersById(Long id) {
         return parametersMapper.toDto(parametersRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("parameterDto with id " + id + " was not found")));
+
     }
 }

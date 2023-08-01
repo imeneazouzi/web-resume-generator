@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface TemplateService {
 
-    public void generateResume() throws IOException;
+     void generateResume() throws IOException;
 }

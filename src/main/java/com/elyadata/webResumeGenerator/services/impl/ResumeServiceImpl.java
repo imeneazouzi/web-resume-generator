@@ -1,10 +1,12 @@
 package com.elyadata.webResumeGenerator.services.impl;
 import com.elyadata.webResumeGenerator.dto.ResumeDTO;
 import com.elyadata.webResumeGenerator.mapper.ResumeMapper;
+import com.elyadata.webResumeGenerator.mapper.SectionMapper;
 import com.elyadata.webResumeGenerator.model.Resume;
 import com.elyadata.webResumeGenerator.repo.ResumeRepository;
 import com.elyadata.webResumeGenerator.execption.NotFoundException;
 import com.elyadata.webResumeGenerator.services.ResumeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class ResumeServiceImpl implements ResumeService {
         Resume existingResume = resumeRepository.findById(resumeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Resume not found with ID: " + resumeDto.getId()));
         existingResume.setTitle(resumeDto.getTitle());
-        existingResume.setSections(resumeDto.getSections());
+        existingResume.setSections(resumeMapper.toEntity(resumeDto).getSections());
         return resumeMapper.toDto(resumeRepository.save(existingResume));
     }
     @Override
@@ -46,8 +48,5 @@ public class ResumeServiceImpl implements ResumeService {
     public List<ResumeDTO> findByTitle(String title) {
             return resumeMapper.toDto(resumeRepository.findByTitle(title));
     }
-    @Override
-    public List<ResumeDTO> findResumeByUser(Long id) {
-        return resumeMapper.toDto(resumeRepository.findResumeByUser(id));
-    }
+
 }

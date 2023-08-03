@@ -1,6 +1,7 @@
 package com.elyadata.webResumeGenerator.services.impl;
 import com.elyadata.webResumeGenerator.dto.SectionDTO;
 import com.elyadata.webResumeGenerator.execption.NotFoundException;
+import com.elyadata.webResumeGenerator.mapper.ParametersMapper;
 import com.elyadata.webResumeGenerator.mapper.SectionMapper;
 import com.elyadata.webResumeGenerator.model.Section;
 import com.elyadata.webResumeGenerator.repo.SectionRepository;
@@ -11,10 +12,12 @@ import java.util.List;
 public class SectionServiceImpl implements SectionService {
     private final SectionRepository sectionRepository;
     private final SectionMapper sectionMapper;
-    public SectionServiceImpl(SectionRepository sectionRepository , SectionMapper sectionMapper)
+    private final ParametersMapper parametersMapper;
+    public SectionServiceImpl(SectionRepository sectionRepository , SectionMapper sectionMapper, ParametersMapper parametersMapper)
     {
         this.sectionRepository = sectionRepository;
         this.sectionMapper = sectionMapper;
+        this.parametersMapper=parametersMapper;
     }
     @Override
     public SectionDTO addSection(SectionDTO sectionDto) {
@@ -29,8 +32,8 @@ public class SectionServiceImpl implements SectionService {
         Section existingSection = sectionRepository.findById(sectionDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Section not found with ID: " + sectionDto.getId()));
         existingSection.setName(sectionDto.getName());
-        existingSection.setParameters(sectionDto.getParameters());
-        existingSection.setSectionType(sectionDto.getSectionType());
+        existingSection.setParameters(parametersMapper.toEntity(sectionDto).getParameters());
+        existingSection.setSectionType(sectionMapper.toEntity(sectionDto).getSectionType());
         return sectionMapper.toDto(sectionRepository.save(existingSection));
     }
     @Override

@@ -11,5 +11,5 @@ import java.util.List;
 public class ResumeDTO {
     private Long id;
     private  String title;
-    private List<Section> sections;
+    private List<SectionDTO> sections;
 }

@@ -8,5 +8,4 @@ public interface ResumeService {
      ResumeDTO updateResume(ResumeDTO resumeDto);
      ResumeDTO findResumeById(Long id);
     List<ResumeDTO> findByTitle(String title);
-    List<ResumeDTO> findResumeByUser(Long id);
 }

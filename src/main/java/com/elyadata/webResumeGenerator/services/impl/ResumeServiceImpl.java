@@ -14,10 +14,12 @@ import java.util.List;
 public class ResumeServiceImpl implements ResumeService {
     private final ResumeRepository resumeRepository;
     private final ResumeMapper resumeMapper;
-    public ResumeServiceImpl(ResumeRepository resumeRepository ,ResumeMapper resumeMapper)
+    public final SectionMapper sectionMapper;
+    public ResumeServiceImpl(ResumeRepository resumeRepository ,ResumeMapper resumeMapper,SectionMapper sectionMapper)
     {
         this.resumeRepository = resumeRepository;
         this.resumeMapper = resumeMapper;
+        this.sectionMapper=sectionMapper;
     }
     @Override
     public ResumeDTO addResume(ResumeDTO resumeDto) {
@@ -36,7 +38,7 @@ public class ResumeServiceImpl implements ResumeService {
         Resume existingResume = resumeRepository.findById(resumeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Resume not found with ID: " + resumeDto.getId()));
         existingResume.setTitle(resumeDto.getTitle());
-        existingResume.setSections(resumeMapper.toEntity(resumeDto).getSections());
+        existingResume.setSections(sectionMapper.toEntity(resumeDto.getSections()));
         return resumeMapper.toDto(resumeRepository.save(existingResume));
     }
     @Override

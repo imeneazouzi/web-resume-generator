@@ -28,7 +28,7 @@ public class SectionTypeServiceImpl implements SectionTypeService {
     public SectionTypeDTO updateSectionType(SectionTypeDTO sectionTypeDto){
         SectionType existingSectionType = sectionTypeRepository.findById(sectionTypeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("SectionType not found with ID: " + sectionTypeDto.getId()));
-        existingSectionType.setType(sectionTypeDto.getType());
+        existingSectionType.setType(sectionTypeMapper.toEntity(sectionTypeDto).getType());
         return sectionTypeMapper.toDto(sectionTypeRepository.save(existingSectionType));
     }
     @Override

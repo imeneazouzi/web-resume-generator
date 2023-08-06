@@ -25,9 +25,6 @@ public class ResumeController {
         return ResponseEntity.ok(resumeService.findByTitle(title));
     }
 
-
-
-
     @PostMapping("/")
     public ResponseEntity<ResumeDTO> addResume(@RequestBody ResumeDTO resumeDto){
         return ResponseEntity.ok(resumeService.addResume(resumeDto));

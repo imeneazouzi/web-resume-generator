@@ -6,7 +6,6 @@ import com.elyadata.webResumeGenerator.model.Resume;
 import com.elyadata.webResumeGenerator.repo.ResumeRepository;
 import com.elyadata.webResumeGenerator.execption.NotFoundException;
 import com.elyadata.webResumeGenerator.services.ResumeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -14,12 +13,12 @@ import java.util.List;
 public class ResumeServiceImpl implements ResumeService {
     private final ResumeRepository resumeRepository;
     private final ResumeMapper resumeMapper;
-    public final SectionMapper sectionMapper;
-    public ResumeServiceImpl(ResumeRepository resumeRepository ,ResumeMapper resumeMapper,SectionMapper sectionMapper)
+    private final SectionMapper sectionMapper;
+    public ResumeServiceImpl(ResumeRepository resumeRepository , ResumeMapper resumeMapper, SectionMapper sectionMapper)
     {
         this.resumeRepository = resumeRepository;
         this.resumeMapper = resumeMapper;
-        this.sectionMapper=sectionMapper;
+        this.sectionMapper = sectionMapper;
     }
     @Override
     public ResumeDTO addResume(ResumeDTO resumeDto) {
@@ -50,5 +49,4 @@ public class ResumeServiceImpl implements ResumeService {
     public List<ResumeDTO> findByTitle(String title) {
             return resumeMapper.toDto(resumeRepository.findByTitle(title));
     }
-
 }
